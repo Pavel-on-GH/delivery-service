@@ -1,0 +1,38 @@
+@import '../variables';
+
+.categories {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      background-color: rgb(220, 220, 220);
+      box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.1);
+      padding: 13px 30px;
+      border-radius: 15px;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.1s ease-in-out;
+      @include noselect();
+
+      &:hover {
+        background-color: #f20101;
+        box-shadow: 2px 1.5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+
+      &:active {
+        background-color: darken(#f9f9f9, 5%);
+        box-shadow: 2px 1.5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+
+      &.active {
+        background-color: rgb(188, 8, 8);
+        color: #fff;
+        box-shadow: 2px 1.5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
