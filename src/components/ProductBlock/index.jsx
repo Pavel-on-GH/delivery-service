@@ -1,4 +1,18 @@
-const ProductBlock = ({ title, price, imageUrl }) => {
+import { useSelector, useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/slices/basketSlice';
+
+const ProductBlock = ({ id, title, price, imageUrl }) => {
+  const dispatch = useDispatch();
+  const buttonAddProduct = () => {
+    const product = {
+      id,
+      title,
+      price,
+      imageUrl,
+    };
+    dispatch(addProduct(product));
+  };
+
   return (
     <div className="product-block-wrapper">
       <div className="product-block">
@@ -7,7 +21,7 @@ const ProductBlock = ({ title, price, imageUrl }) => {
         <div className="product-block__price">От {price} ₽</div>
 
         <div className="product-block__bottom">
-          <button className="button button--outline button--add">
+          <button onClick={buttonAddProduct} className="button button--outline button--add">
             <span>В корзину</span>
           </button>
         </div>

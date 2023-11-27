@@ -1,38 +1,36 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import axios from 'axios';
 
 import Categories from '../components/Categories';
 import ProductBlock from '../components/ProductBlock';
 import Sort from '../components/Sort';
 import Skeleton from '../components/ProductBlock/Skeleton';
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const { categoryValue, sortValue } = useSelector((state) => state.filter);
+  const { searchValue } = useSelector((state) => state.search);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [categoryValue, setCategoryValue] = useState(0);
-  const [sortValue, setSortValue] = useState({
-    name: '... выбрать',
-    property: 'rating',
-  });
 
   useEffect(() => {
+    const requestForProducts = 'https://64f1d3700e1e60602d2453ea.mockapi.io/items';
     const sortOrder = `sortBy=${sortValue.property.replace('-', '')}&order=${
       sortValue.property.includes('-') ? 'asc' : 'desc'
     }`;
-    const requestForProducts = 'https://64f1d3700e1e60602d2453ea.mockapi.io/items';
-
     setLoading(true);
-    fetch(
-      categoryValue
-        ? `${requestForProducts}?category=${categoryValue}&${sortOrder}`
-        : `${requestForProducts}?${sortOrder}`,
-    )
-      .then((res) => {
-        return res.json();
-      })
+
+    axios
+      .get(
+        categoryValue
+          ? `${requestForProducts}?category=${categoryValue}&${sortOrder}`
+          : `${requestForProducts}?${sortOrder}`,
+      )
       .then((arr) => {
-        setItems(arr);
+        setItems(arr.data);
         setLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryValue, sortValue]);
 
@@ -48,13 +46,8 @@ const Home = ({ searchValue }) => {
     <>
       <div className="container">
         <div className="content__top">
-          <Categories
-            storageCategory={categoryValue}
-            onClickCategory={(i) => {
-              setCategoryValue(i);
-            }}
-          />
-          {<Sort storageSort={sortValue} onClickSort={(i) => setSortValue(i)} />}
+          <Categories />
+          <Sort />
         </div>
         <h2 className="content__title">{categoryValue === 0 ? 'Все товары' : ''}</h2>
         <div className="content__items">
