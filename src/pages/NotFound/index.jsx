@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-const NotFoundElement = () => {
+const NotFound = () => {
   return (
     <div className={styles.root}>
       <img
@@ -12,4 +12,4 @@ const NotFoundElement = () => {
   );
 };
 
-export default NotFoundElement;
+export default NotFound;

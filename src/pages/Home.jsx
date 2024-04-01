@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 import Categories from '../components/Categories';
@@ -35,12 +35,9 @@ const Home = () => {
   }, [categoryValue, sortValue]);
 
   const skeleton = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
-  const filterProducts = items.filter((arr) => {
-    if (arr.title.toLowerCase().includes(searchValue.toLowerCase())) {
-      return true;
-    }
-    return false;
-  });
+  const filterProducts = items
+    .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
+    .map((arr) => <ProductBlock key={arr.imageUrl} {...arr} />);
 
   return (
     <>
@@ -50,11 +47,7 @@ const Home = () => {
           <Sort />
         </div>
         <h2 className="content__title">{categoryValue === 0 ? 'Все товары' : ''}</h2>
-        <div className="content__items">
-          {loading
-            ? skeleton
-            : filterProducts.map((arr) => <ProductBlock key={arr.imageUrl} {...arr} />)}
-        </div>
+        <div className="content__items">{loading ? skeleton : filterProducts}</div>
       </div>
     </>
   );

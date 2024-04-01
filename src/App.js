@@ -4,7 +4,7 @@ import './scss/app.scss';
 import Header from './components/Header';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import Bascet from './pages/Basket';
+import Basket from './pages/Basket';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/basket" element={<Bascet />} />
+          <Route path="/basket" element={<Basket />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

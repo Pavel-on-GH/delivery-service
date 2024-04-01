@@ -4,12 +4,12 @@ import { setSearchValue } from '../../redux/slices/searchSlice';
 import styles from './Search.module.scss';
 
 const Search = () => {
-  const searchValue = useSelector((state) => state.search.searchValue);
+  const { searchValue } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   const inputRef = useRef();
 
   const inputClear = () => {
-    setSearchValue('');
+    dispatch(setSearchValue(''));
     inputRef.current.focus();
   };
 
@@ -21,13 +21,14 @@ const Search = () => {
         value={searchValue}
         onChange={(event) => {
           dispatch(setSearchValue(event.target.value));
-          console.log(searchValue);
         }}
-        placeholder="Введите наименование..."
+        placeholder="Поиск..."
       />
-      <button className={styles.clear} onClick={inputClear}>
-        X
-      </button>
+      {searchValue && (
+        <button className={styles.clear} onClick={inputClear}>
+          X
+        </button>
+      )}
     </div>
   );
 };
