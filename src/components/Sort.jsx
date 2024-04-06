@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortValue } from '../redux/slices/filterSlice';
+import { selectFilter } from '../redux/slices/filterSlice';
 
 const sortTypes = [
   { name: 'Алфавиту (От А до Я)', property: '-title' },
@@ -9,9 +10,9 @@ const sortTypes = [
   { name: 'Цене (по убыванию)', property: 'price' },
 ];
 
-const Sort = () => {
+export const Sort = () => {
   const sortRef = useRef();
-  const sortValue = useSelector((state) => state.filter.sortValue);
+  const { sortValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
   const [openPopup, setOpenPopup] = useState(false);
   const closePopup = (i) => {
@@ -53,5 +54,3 @@ const Sort = () => {
     </div>
   );
 };
-
-export default Sort;

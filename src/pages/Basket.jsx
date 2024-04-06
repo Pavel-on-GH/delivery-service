@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearBasket } from '../redux/slices/basketSlice';
 import BasketProduct from './BasketProduct';
+import { EmptyBasket } from '../components/EmptyBasket';
 
-const Basket = () => {
+export const Basket = () => {
   const dispatch = useDispatch();
   const { products, totalPrice } = useSelector((state) => state.basket);
   const clearConfirm = () => {
@@ -11,6 +12,10 @@ const Basket = () => {
       dispatch(clearBasket());
     }
   };
+
+  if (!totalPrice) {
+    return <EmptyBasket />;
+  }
 
   return (
     <div className="container container--cart">
@@ -31,7 +36,7 @@ const Basket = () => {
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
-              Всего наименований: <b>{products.length}</b>
+              Товары: <b>{products.reduce((sum, item) => sum + item.count, 0)}</b>
             </span>
             <span>
               Сумма заказа: <b>{totalPrice} ₽</b>
@@ -50,5 +55,3 @@ const Basket = () => {
     </div>
   );
 };
-
-export default Basket;

@@ -1,15 +1,12 @@
 import styles from './styles.module.scss';
+import sadImg from '../../assets/img/CryingEmoji.png';
 
-const NotFound = () => {
+export const NotFound = () => {
   return (
     <div className={styles.root}>
-      <img
-        src="https://easydrawingguides.com/wp-content/uploads/2018/10/Crying-Emoji-05.png"
-        alt="sad-emoji"></img>
+      <img src={sadImg} alt="sad-emoji"></img>
       <h1>Что-то пошло не так...</h1>
       <p>К сожалению, запрашиваемая страница в данный момент недоступна.</p>
     </div>
   );
 };
-
-export default NotFound;

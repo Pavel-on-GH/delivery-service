@@ -1,0 +1,33 @@
+.root {
+  display: grid;
+  text-align: center;
+  margin: 0 auto;
+  grid-template-areas:
+    'a a'
+    ' b c';
+
+  .title {
+    grid-area: a;
+    h1 {
+      color: rgb(188, 8, 8);
+      margin-bottom: 50px;
+    }
+  }
+
+  .image {
+    text-align: center;
+    grid-area: b;
+  }
+  .description {
+    grid-area: c;
+    h2 {
+      text-align: justify;
+    }
+    p {
+      text-align: justify;
+      max-width: 500px;
+      font-size: 20px;
+      margin-top: 24px;
+    }
+  }
+}

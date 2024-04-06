@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Search } from './Search/Search';
 import deliveryLogo from '../assets/img/delivery-logo.svg';
-import Search from './Search/Search';
 import basket from '../assets/img/basket.png';
 
-const Header = () => {
+export const Header = () => {
   const { products, totalPrice } = useSelector((state) => state.basket);
   const countSum = products.reduce((sum, item) => sum + item.count, 0);
 
@@ -32,9 +32,6 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      {console.log(products)}
     </div>
   );
 };
-
-export default Header;

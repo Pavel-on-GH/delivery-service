@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryValue } from '../redux/slices/filterSlice';
+import { selectFilter } from '../redux/slices/filterSlice';
 
-const Categories = () => {
-  const categoryValue = useSelector((state) => state.filter.categoryValue);
+export const Categories = () => {
+  const { categoryValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const listOfCategories = ['Все', 'Пиццы', 'Суши и роллы', 'Закуски', 'Десерты', 'Напитки'];
@@ -22,5 +23,3 @@ const Categories = () => {
     </div>
   );
 };
-
-export default Categories;

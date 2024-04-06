@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../redux/slices/basketSlice';
+import { Link } from 'react-router-dom';
 
-const ProductBlock = ({ id, title, price, imageUrl }) => {
+export const ProductBlock = ({ id, title, price, imageUrl, description }) => {
   const dispatch = useDispatch();
   const buttonAddProduct = () => {
     const product = {
@@ -9,6 +10,7 @@ const ProductBlock = ({ id, title, price, imageUrl }) => {
       title,
       price,
       imageUrl,
+      description,
     };
     dispatch(addProduct(product));
   };
@@ -16,7 +18,9 @@ const ProductBlock = ({ id, title, price, imageUrl }) => {
   return (
     <div className="product-block-wrapper">
       <div className="product-block">
-        <img className="product-block__image" src={imageUrl} alt={`Изображение: ${title}`} />
+        <Link to={`product/${id}`}>
+          <img className="product-block__image" src={imageUrl} alt={`Изображение: ${title}`} />
+        </Link>
         <h4 className="product-block__title">{title}</h4>
         <div className="product-block__price">От {price} ₽</div>
 
@@ -29,5 +33,3 @@ const ProductBlock = ({ id, title, price, imageUrl }) => {
     </div>
   );
 };
-
-export default ProductBlock;

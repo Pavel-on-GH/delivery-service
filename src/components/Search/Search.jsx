@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchValue } from '../../redux/slices/searchSlice';
+import { setSearchValue, selectSearch } from '../../redux/slices/searchSlice';
 import styles from './Search.module.scss';
 
-const Search = () => {
-  const { searchValue } = useSelector((state) => state.search);
+export const Search = () => {
+  const { searchValue } = useSelector(selectSearch);
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -32,5 +32,3 @@ const Search = () => {
     </div>
   );
 };
-
-export default Search;
