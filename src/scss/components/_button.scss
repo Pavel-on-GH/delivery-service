@@ -39,11 +39,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    width: 42px;
     height: 32px;
     min-width: 32px;
     padding: 0;
-    border-width: 2px;
+    margin: 3px;
+    border-width: 20px;
   }
 
   &--black {
@@ -52,39 +53,6 @@
     &:hover,
     &:active {
       background-color: lighten($color: $black, $amount: 10);
-    }
-  }
-
-  &--outline {
-    background-color: rgb(220, 220, 220);
-    z &,
-    span {
-      color: black;
-    }
-
-    svg {
-      path {
-        fill: $orange;
-      }
-    }
-
-    &:hover {
-      background-color: $orange;
-
-      &,
-      span {
-        color: #fff;
-      }
-
-      svg {
-        path {
-          fill: #fff;
-        }
-      }
-    }
-
-    &:active {
-      background-color: darken($orange, 8%);
     }
   }
 

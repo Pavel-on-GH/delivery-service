@@ -1,12 +1,33 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Search } from './Search/Search';
+import { Search } from './Search/index';
 import deliveryLogo from '../assets/img/delivery-logo.svg';
 import basket from '../assets/img/basket.png';
+import { selectBascket } from '../redux/slices/basketSlice';
+import {
+  useEffect,
+  // useRef
+} from 'react';
 
 export const Header = () => {
-  const { products, totalPrice } = useSelector((state) => state.basket);
+  const { products, totalPrice } = useSelector(selectBascket);
   const countSum = products.reduce((sum, item) => sum + item.count, 0);
+  // let firstRenderStorage = useRef(false);
+
+  useEffect(() => {
+    // if (firstRenderStorage.current) {
+    const jsonProducts = JSON.stringify(products);
+    localStorage.setItem('Basket', jsonProducts);
+    const jsonPrice = JSON.stringify(totalPrice);
+    localStorage.setItem('TotalPrice', jsonPrice);
+    // }
+    // firstRenderStorage.current = true;
+    // localStorage.setItem('Basket', JSON.stringify(products));
+    // console.log(localStorage);
+    // localStorage.getItem('Basket');
+    // localStorage.clear();
+    // console.log(localStorage);
+  }, [products, totalPrice]);
 
   return (
     <div className="header">

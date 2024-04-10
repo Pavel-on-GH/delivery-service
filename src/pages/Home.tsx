@@ -1,20 +1,29 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Categories } from '../components/Categories';
 import { ProductBlock } from '../components/ProductBlock';
 import { Sort } from '../components/Sort';
 import { Skeleton } from '../components/ProductBlock/Skeleton';
-import { NotFound } from '../pages/NotFound/index';
-import { fetchProducts } from '../redux/slices/productsSlice';
+import { NotFound } from './NotFound/index';
+import { fetchProducts, selectProduct } from '../redux/slices/productsSlice';
 import { selectFilter } from '../redux/slices/filterSlice';
 import { selectSearch } from '../redux/slices/searchSlice';
+import { useAppDispatch } from '../redux/store';
+
+// type categoryAndSortType = {
+//   categoryValue: number;
+//   sortValue: {
+//     name: string;
+//     property: string;
+//   };
+// };
 
 export const Home = () => {
   const { categoryValue, sortValue } = useSelector(selectFilter);
   const { searchValue } = useSelector(selectSearch);
-  const { products, status } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
+  const { products, status } = useSelector(selectProduct);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     async function asyncProducts() {

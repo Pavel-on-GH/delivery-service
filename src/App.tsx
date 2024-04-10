@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { NotFound } from './pages/NotFound';
 import { Basket } from './pages/Basket';
-import { ProductPage } from './pages/ProductPage/ProductPage';
+import { ProductPage } from './pages/ProductPage/index';
 
 export function App() {
   return (

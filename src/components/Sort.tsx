@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSortValue } from '../redux/slices/filterSlice';
 import { selectFilter } from '../redux/slices/filterSlice';
 
-const sortTypes = [
+type sortType = {
+  name: string;
+  property: string;
+};
+
+const sortArray: sortType[] = [
   { name: 'Алфавиту (От А до Я)', property: '-title' },
   { name: 'Алфавиту (от Я до А)', property: 'title' },
   { name: 'Цене (по возрастанию)', property: '-price' },
@@ -11,18 +16,18 @@ const sortTypes = [
 ];
 
 export const Sort = () => {
-  const sortRef = useRef();
-  const { sortValue } = useSelector(selectFilter);
-  const dispatch = useDispatch();
   const [openPopup, setOpenPopup] = useState(false);
-  const closePopup = (i) => {
-    dispatch(setSortValue(i));
+  const { sortValue } = useSelector(selectFilter);
+  const sortRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useDispatch();
+  const closePopup = (obj: sortType) => {
+    dispatch(setSortValue(obj));
     setOpenPopup(!openPopup);
   };
 
   useEffect(() => {
-    const clickTracking = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const clickTracking = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpenPopup(false);
       }
     };
@@ -33,14 +38,14 @@ export const Sort = () => {
   return (
     <div ref={sortRef} className="sort">
       <div className="sort__label">
-        <b>Сортировка по: </b>
+        <b>Фильтрация по: </b>
         <span onClick={() => setOpenPopup(!openPopup)}>{sortValue.name}</span>
       </div>
 
       {openPopup && (
         <div className="sort__popup">
           <ul>
-            {sortTypes.map((obj, i) => (
+            {sortArray.map((obj, i) => (
               <li
                 key={i}
                 onClick={() => closePopup(obj)}

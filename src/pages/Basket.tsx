@@ -1,15 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { clearBasket } from '../redux/slices/basketSlice';
-import BasketProduct from './BasketProduct';
+import { clearBasket, selectBascket } from '../redux/slices/basketSlice';
+import { BasketProduct } from './BasketProduct';
 import { EmptyBasket } from '../components/EmptyBasket';
 
 export const Basket = () => {
   const dispatch = useDispatch();
-  const { products, totalPrice } = useSelector((state) => state.basket);
+  const { products, totalPrice } = useSelector(selectBascket);
   const clearConfirm = () => {
     if (window.confirm('Вы действительно желаете полностью очистить корзину?')) {
       dispatch(clearBasket());
+      localStorage.clear();
     }
   };
 
@@ -43,10 +44,10 @@ export const Basket = () => {
             </span>
           </div>
           <div className="cart__bottom-buttons">
-            <Link to="/" className="button button--outline button--add go-back-btn">
+            <Link to="/" className="button basket-btn">
               <span>Вернуться</span>
             </Link>
-            <div className="button pay-btn">
+            <div className="button basket-btn">
               <span>Оплатить</span>
             </div>
           </div>

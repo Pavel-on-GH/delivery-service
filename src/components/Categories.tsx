@@ -6,7 +6,14 @@ export const Categories = () => {
   const { categoryValue } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const listOfCategories = ['Все', 'Пиццы', 'Суши и роллы', 'Закуски', 'Десерты', 'Напитки'];
+  const listOfCategories: string[] = [
+    'Все',
+    'Пиццы',
+    'Суши и роллы',
+    'Закуски',
+    'Десерты',
+    'Напитки',
+  ];
 
   return (
     <div className="categories">

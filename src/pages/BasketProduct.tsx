@@ -1,17 +1,26 @@
 import { useDispatch } from 'react-redux';
 import { removeProduct, dicrement, increment } from '../redux/slices/basketSlice';
 
-const BasketProduct = ({ id, title, price, imageUrl, count }) => {
+export type BasketProductPropsType = {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  count: number;
+};
+
+export const BasketProduct = ({ id, title, price, imageUrl, count }: BasketProductPropsType) => {
+  const basketProps = { id, title, price, imageUrl, count };
   const dispatch = useDispatch();
   const dicrementCount = () => {
-    dispatch(dicrement({ id }));
+    dispatch(dicrement(basketProps));
   };
   const incrementCount = () => {
-    dispatch(increment({ id }));
+    dispatch(increment(basketProps));
   };
   const removeConfirm = () => {
     if (window.confirm('Вы действительно желаете удалить товар из корзины?')) {
-      dispatch(removeProduct(id));
+      dispatch(removeProduct(basketProps));
     }
   };
 
@@ -47,5 +56,3 @@ const BasketProduct = ({ id, title, price, imageUrl, count }) => {
     </div>
   );
 };
-
-export default BasketProduct;

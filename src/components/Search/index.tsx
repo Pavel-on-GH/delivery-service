@@ -6,11 +6,11 @@ import styles from './Search.module.scss';
 export const Search = () => {
   const { searchValue } = useSelector(selectSearch);
   const dispatch = useDispatch();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const inputClear = () => {
     dispatch(setSearchValue(''));
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   return (

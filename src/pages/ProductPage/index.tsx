@@ -3,8 +3,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
+type ProductInfoType = {
+  title: string;
+  price: number;
+  description: string;
+  id: string;
+  imageUrl: string;
+};
+
 export const ProductPage = () => {
-  const [productInfo, setProductInfo] = useState([]);
+  const [productInfo, setProductInfo] = useState<ProductInfoType>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -13,7 +21,7 @@ export const ProductPage = () => {
       try {
         const { data } = await axios.get(`https://64f1d3700e1e60602d2453ea.mockapi.io/items/${id}`);
         setProductInfo(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         alert(`Ошибка при получении... Тип ошибки: "${error}"`);
         navigate('/');
@@ -38,7 +46,7 @@ export const ProductPage = () => {
       <br />
       <div className={styles.description}>
         <h2>{`Цена: ${productInfo.price} ₽`}</h2>
-        <p>Артикул товара: {`98765${productInfo.id}`}</p>
+        <p>Код товара: {`98765${productInfo.id ? productInfo.id : ''}`}</p>
         <p>
           {productInfo.description
             ? productInfo.description
