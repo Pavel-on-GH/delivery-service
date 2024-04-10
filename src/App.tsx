@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-
+import { Suspense, lazy } from 'react';
+import { Header } from './exports/componentsExport';
+import Home from './pages/Home';
 import './scss/app.scss';
-import { Header } from './components/Header';
-import { Home } from './pages/Home';
-import { NotFound } from './pages/NotFound';
-import { Basket } from './pages/Basket';
-import { ProductPage } from './pages/ProductPage/index';
+
+const Basket = lazy(() => import('./pages/Basket'));
+const ProductPage = lazy(() => import('./pages/ProductPage/index'));
+const NotFound = lazy(() => import('./pages/NotFound/index'));
 
 export function App() {
   return (
@@ -14,9 +15,33 @@ export function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/basket" element={<Basket />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="*" element={<NotFound />} />
+
+          <Route
+            path="/basket"
+            element={
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <Basket />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/product/:id"
+            element={
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <ProductPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <NotFound />
+              </Suspense>
+            }
+          />
         </Routes>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import sadImg from '../../assets/img/CryingEmoji.png';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <div className={styles.root}>
       <img src={sadImg} alt="sad-emoji"></img>
@@ -10,3 +10,5 @@ export const NotFound = () => {
     </div>
   );
 };
+
+export default NotFound;

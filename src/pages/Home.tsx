@@ -1,17 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
-import { Categories } from '../components/Categories';
-import { ProductBlock } from '../components/ProductBlock';
-import { Sort } from '../components/Sort';
-import { Skeleton } from '../components/ProductBlock/Skeleton';
-import { NotFound } from './NotFound/index';
-import { fetchProducts, selectProduct } from '../redux/slices/productsSlice';
-import { selectFilter } from '../redux/slices/filterSlice';
-import { selectSearch } from '../redux/slices/searchSlice';
+import { Categories, ProductBlock, Sort, Skeleton } from '../exports/componentsExport';
+import { selectFilter, selectSearch, selectProduct, fetchProducts } from '../exports/sliceExports';
 import { useAppDispatch } from '../redux/store';
+import NotFound from './NotFound/index';
 
-export const Home = () => {
+const Home = () => {
   const { categoryValue, sortValue } = useSelector(selectFilter);
   const { searchValue } = useSelector(selectSearch);
   const { products, status } = useSelector(selectProduct);
@@ -48,3 +42,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

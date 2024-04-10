@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { clearBasket, selectBascket } from '../redux/slices/basketSlice';
-import { BasketProduct } from '../components/BasketProduct';
-import { EmptyBasket } from '../components/EmptyBasket';
+import { clearBasket, selectBascket } from '../exports/sliceExports';
+import { BasketProduct, EmptyBasket } from '../exports/componentsExport';
 
-export const Basket = () => {
+const Basket = () => {
   const dispatch = useDispatch();
   const { products, totalPrice } = useSelector(selectBascket);
   const clearConfirm = () => {
@@ -54,3 +53,5 @@ export const Basket = () => {
     </div>
   );
 };
+
+export default Basket;

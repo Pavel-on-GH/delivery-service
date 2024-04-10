@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSortValue } from '../redux/slices/filterSlice';
-import { selectFilter } from '../redux/slices/filterSlice';
+import { setSortValue, selectFilter } from '../exports/sliceExports';
 
 type sortType = {
   name: string;

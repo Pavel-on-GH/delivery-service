@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { removeProduct, dicrement, increment } from '../redux/slices/basketSlice';
+import { removeProduct, dicrement, increment } from '../exports/sliceExports';
 
 export type BasketProductPropsType = {
   id: string;

@@ -11,7 +11,7 @@ type ProductInfoType = {
   imageUrl: string;
 };
 
-export const ProductPage = () => {
+const ProductPage = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -61,3 +61,5 @@ export const ProductPage = () => {
     </div>
   );
 };
+
+export default ProductPage;

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../../redux/slices/basketSlice';
+import { addProduct } from '../../exports/sliceExports';
 import { Link } from 'react-router-dom';
 
 export type ProductBlockType = {

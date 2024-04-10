@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Search } from './Search/index';
+import { Search } from '../exports/componentsExport';
+import { selectBascket } from '../exports/sliceExports';
 import deliveryLogo from '../assets/img/delivery-logo.svg';
 import basket from '../assets/img/basket.png';
-import { selectBascket } from '../redux/slices/basketSlice';
-import { useEffect } from 'react';
 
 export const Header = () => {
   const { products, totalPrice } = useSelector(selectBascket);
