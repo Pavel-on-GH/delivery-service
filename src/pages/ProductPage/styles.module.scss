@@ -3,8 +3,9 @@
   text-align: center;
   margin: 0 auto;
   grid-template-areas:
-    'a a'
-    ' b c';
+    'a a a a'
+    'b b c c'
+    'd d c c';
 
   .title {
     grid-area: a;
@@ -17,6 +18,12 @@
   .image {
     text-align: center;
     grid-area: b;
+  }
+  .back {
+    grid-area: d;
+    button {
+      font-size: 16px;
+    }
   }
   .description {
     grid-area: c;

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearBasket, selectBascket } from '../redux/slices/basketSlice';
-import { BasketProduct } from './BasketProduct';
+import { BasketProduct } from '../components/BasketProduct';
 import { EmptyBasket } from '../components/EmptyBasket';
 
 export const Basket = () => {
@@ -44,12 +44,10 @@ export const Basket = () => {
             </span>
           </div>
           <div className="cart__bottom-buttons">
-            <Link to="/" className="button basket-btn">
-              <span>Вернуться</span>
+            <Link to="/">
+              <button className="button basket-btn">Вернуться</button>
             </Link>
-            <div className="button basket-btn">
-              <span>Оплатить</span>
-            </div>
+            <button className="button basket-btn">Оплатить</button>
           </div>
         </div>
       </div>

@@ -11,14 +11,6 @@ import { selectFilter } from '../redux/slices/filterSlice';
 import { selectSearch } from '../redux/slices/searchSlice';
 import { useAppDispatch } from '../redux/store';
 
-// type categoryAndSortType = {
-//   categoryValue: number;
-//   sortValue: {
-//     name: string;
-//     property: string;
-//   };
-// };
-
 export const Home = () => {
   const { categoryValue, sortValue } = useSelector(selectFilter);
   const { searchValue } = useSelector(selectSearch);

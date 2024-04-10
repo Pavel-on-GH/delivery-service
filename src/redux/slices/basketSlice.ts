@@ -6,7 +6,6 @@ type BasketSliceType = {
   title: string;
   price: number;
   imageUrl: string;
-  // description?: string;
   count: number;
 };
 

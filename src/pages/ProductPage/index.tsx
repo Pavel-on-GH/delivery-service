@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 type ProductInfoType = {
@@ -21,7 +21,6 @@ export const ProductPage = () => {
       try {
         const { data } = await axios.get(`https://64f1d3700e1e60602d2453ea.mockapi.io/items/${id}`);
         setProductInfo(data);
-        // console.log(data);
       } catch (error) {
         alert(`Ошибка при получении... Тип ошибки: "${error}"`);
         navigate('/');
@@ -42,6 +41,12 @@ export const ProductPage = () => {
       <div className={styles.image}>
         <img width={300} src={productInfo.imageUrl} alt={`Изображение: ${productInfo.title}`} />
       </div>
+      <div className={styles.back}>
+        <Link to="/">
+          <button className="button basket-btn">Вернуться</button>
+        </Link>
+      </div>
+
       <div className={styles.gap}></div>
       <br />
       <div className={styles.description}>
