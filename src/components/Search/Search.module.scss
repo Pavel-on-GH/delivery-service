@@ -33,3 +33,9 @@
     color: #f4f4f4;
   }
 }
+
+@media (max-width: 480px) {
+  .input {
+    width: 210px;
+  }
+}

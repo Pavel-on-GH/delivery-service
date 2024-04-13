@@ -1,4 +1,6 @@
 .root {
+  width: 100%;
+  padding: 20px;
   display: grid;
   text-align: center;
   margin: 0 auto;
@@ -8,6 +10,7 @@
     'd d c c';
 
   .title {
+    text-align: center;
     grid-area: a;
     h1 {
       color: rgb(188, 8, 8);
@@ -32,9 +35,30 @@
     }
     p {
       text-align: justify;
-      max-width: 500px;
+      max-width: 600px;
       font-size: 20px;
       margin-top: 24px;
+      padding-right: 20px;
+      margin-left: 20px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    grid-template-areas:
+      'a a a a'
+      'b b b b'
+      'c c c c'
+      'd d d d';
+  }
+  h2 {
+    margin-left: 20px;
+  }
+  p {
+    margin: 0 auto;
+  }
+  .back {
+    margin-top: 20px;
   }
 }
